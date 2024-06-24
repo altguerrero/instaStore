@@ -34,6 +34,7 @@ InstaStore es una aplicación web diseñada para ayudar a nuestros clientes B2B 
 La aplicación está desarrollada con React para asegurar una experiencia de usuario fluida y rápida, y utiliza tecnologías modernas para proporcionar una interfaz intuitiva y fácil de usar.
 
 ## Preguntas y Respuestas
+
 Documentación de preguntas realizadas y sus respuestas.
 
 **Por definir.**
@@ -77,10 +78,10 @@ instaStore/
 3. **Redirección a StoresView**: Después de enviar el formulario, la aplicación redirige a `StoresView`.
 4. **Visualización de Tiendas**: En `StoresView`, el usuario puede ver una lista de tiendas cercanas y un mapa con las ubicaciones de las tiendas.
 
-
 ### Flujo de Datos
 
 1. **OrderFormView**:
+
    - El formulario de pedido captura el ID del pedido y la ubicación.
    - La función `onOrderSubmit` maneja el envío del pedido y redirige a `StoresView`.
 
@@ -90,7 +91,6 @@ instaStore/
    - Muestra una lista de tiendas y un mapa con las ubicaciones.
 
 Esta arquitectura modular permite mantener el código organizado y facilita el mantenimiento y la extensión de la aplicación.
-
 
 ## Bocetos
 
@@ -197,10 +197,13 @@ Esto generará los archivos compilados en la carpeta `dist`.
 - Asegúrate de configurar las variables de entorno necesarias en un archivo .env en la raíz del proyecto.
 
 ## Mejoras y Compromisos
+
 **Por definir.**
 
 ## Bloqueos Encontrados
+
 **Por definir.**
 
 ## Video de Demostración
+
 **Por definir.**
