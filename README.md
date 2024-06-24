@@ -52,12 +52,12 @@ instaStore/
 │   ├── assets/
 │   │   ├── images/
 │   │   └── styles/
-│   ├── utils/
-│   │   ├── lib/
-│   │   ├── hooks/
+│   ├── lib/
 │   │   └── ...
 │   ├── components/
 │   │   ├── ui/
+│   │   └── ...
+│   ├── hooks/
 │   │   └── ...
 │   ├── views/
 │   │   └── ...
