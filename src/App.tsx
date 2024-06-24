@@ -1,10 +1,19 @@
-import { Button } from "@/components/ui/button";
+import { Suspense, lazy } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+const OrderFormView = lazy(() => import("./views/OrderFormView"));
+const StoresView = lazy(() => import("./views/StoresView"));
 
 const App = () => {
   return (
-    <div className="flex flex-col flex-1 h-screen justify-center items-center">
-      <Button>Click me</Button>
-    </div>
+    <Router>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<OrderFormView />} />
+          <Route path="/stores" element={<StoresView />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 };
 
