@@ -5,7 +5,7 @@ import { getDirections } from "@/lib/utils";
 const useStoreDirections = () => {
   const { order } = useOrderStore();
   const {
-    stores,
+    filteredStores,
     generateStores,
     directions,
     setDirections,
@@ -75,7 +75,7 @@ const useStoreDirections = () => {
   );
 
   return {
-    stores,
+    filteredStores,
     loading,
     openStoreId,
     handleToggleCollapse,

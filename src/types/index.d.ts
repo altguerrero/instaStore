@@ -31,9 +31,12 @@ declare interface Directions {
 
 declare interface StoreByOrder {
   stores: Store[];
+  filteredStores: Store[];
+  filters: z.infer<typeof filterSchema>;
   directions: Directions[];
   selectedStoreId: string | null;
   generateStores: (lat: number, lng: number, numStores: number) => void;
+  setFilters: (filters: z.infer<typeof filterSchema>) => void;
   setDirections: (
     storeId: string,
     directions: google.maps.DirectionsResult

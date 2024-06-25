@@ -6,3 +6,4 @@ export { default as Store } from "./Store";
 export { default as RoutesRenderers } from "./RoutesRenderers";
 export { default as StoreDetailsDialog } from "./StoreDetailsDialog";
 export { default as ChangeLocationDialog } from "./ChangeLocationDialog";
+export { default as FilterStoresDialog } from "./FilterStoresDialog";

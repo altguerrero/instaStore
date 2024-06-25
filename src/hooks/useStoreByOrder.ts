@@ -1,13 +1,34 @@
-import { generateRandomStores } from "@/lib/utils";
 import { create } from "zustand";
+import { z } from "zod";
+import {
+  applyFilters,
+  filterSchema,
+  generateRandomStores,
+  getOrderLocation,
+} from "@/lib/utils";
 
-const useStoreByOrder = create<StoreByOrder>((set) => ({
+const useStoreByOrder = create<StoreByOrder>((set, get) => ({
   stores: [],
+  filteredStores: [],
+  filters: {},
   directions: [],
   selectedStoreId: null,
   generateStores: (lat: number, lng: number, numStores: number) => {
     const newStores = generateRandomStores(lat, lng, numStores);
-    set({ stores: newStores });
+    const { filters } = get();
+    const orderLocation = { lat, lng };
+    set({
+      stores: newStores,
+      filteredStores: applyFilters(newStores, filters, orderLocation),
+    });
+  },
+  setFilters: (filters: z.infer<typeof filterSchema>) => {
+    const { stores } = get();
+    const orderLocation = getOrderLocation();
+    set({
+      filters,
+      filteredStores: applyFilters(stores, filters, orderLocation),
+    });
   },
   setDirections: (
     storeId: string,
