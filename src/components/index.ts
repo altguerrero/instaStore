@@ -5,3 +5,4 @@ export { default as SearchPlaces } from "./SearchPlaces";
 export { default as Store } from "./Store";
 export { default as RoutesRenderers } from "./RoutesRenderers";
 export { default as StoreDetailsDialog } from "./StoreDetailsDialog";
+export { default as ChangeLocationDialog } from "./ChangeLocationDialog";
