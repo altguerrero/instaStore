@@ -12,10 +12,28 @@ import {
   nearbyStoresCircleOptions,
 } from "@/constants";
 import { useMap, useStoreByOrder } from "@/hooks";
+import { RoutesRenderers } from "./";
 
 const Map = () => {
-  const { orderLocation, options, center, onLoad } = useMap();
+  const { orderLocation, options, center, onLoad, selectedDirection } =
+    useMap();
   const { stores } = useStoreByOrder();
+
+  const directionsRendererProps = selectedDirection
+    ? [
+        {
+          directions: selectedDirection,
+          options: {
+            suppressMarkers: false,
+            polylineOptions: {
+              zIndex: 50,
+              strokeColor: "#007bff",
+              strokeWeight: 5,
+            },
+          },
+        },
+      ]
+    : [];
 
   return (
     <div className="w-full h-full">
@@ -64,6 +82,7 @@ const Map = () => {
             />
           </>
         )}
+        <RoutesRenderers rendererProps={directionsRendererProps} />
       </GoogleMap>
     </div>
   );
