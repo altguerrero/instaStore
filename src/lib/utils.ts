@@ -57,8 +57,8 @@ export const generateRandomStores = (
       storeName: storeNames[Math.floor(Math.random() * storeNames.length)],
       isOpen: randomBoolean(),
       coordinates: {
-        lat: randomCoord.lat.toFixed(6),
-        lng: randomCoord.lng.toFixed(6),
+        lat: Number(randomCoord.lat.toFixed(6)),
+        lng: Number(randomCoord.lng.toFixed(6)),
       },
     });
   });
@@ -73,11 +73,39 @@ export const generateRandomStores = (
       storeName: storeNames[Math.floor(Math.random() * storeNames.length)],
       isOpen: randomBoolean(),
       coordinates: {
-        lat: randomCoord.lat.toFixed(6),
-        lng: randomCoord.lng.toFixed(6),
+        lat: Number(randomCoord.lat.toFixed(6)),
+        lng: Number(randomCoord.lng.toFixed(6)),
       },
     });
   }
 
   return stores;
+};
+
+export const getDirections = (
+  origin: LatLngLiteral,
+  destination: LatLngLiteral
+): Promise<google.maps.DirectionsResult | null> => {
+  return new Promise((resolve, reject) => {
+    if (!origin || !destination) {
+      reject(new Error("Origin and destination are required"));
+      return;
+    }
+
+    const service = new google.maps.DirectionsService();
+    service.route(
+      {
+        origin,
+        destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === "OK" && result) {
+          resolve(result);
+        } else {
+          reject(new Error(`Failed to get directions: ${status}`));
+        }
+      }
+    );
+  });
 };
