@@ -2,6 +2,7 @@ import { useOrderStore } from "@/hooks";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
 import { MapPinned } from "lucide-react";
+import { ChangeLocationDialog } from "./";
 
 const Header = () => {
   const { order } = useOrderStore();
@@ -11,9 +12,11 @@ const Header = () => {
       <Logo size="2xl" />
 
       <div className="flex items-center gap-4">
-        <Button>
-          <MapPinned className="mr-2 h-4 w-4" /> Location
-        </Button>
+        <ChangeLocationDialog>
+          <Button>
+            <MapPinned className="mr-2 h-4 w-4" /> Location
+          </Button>
+        </ChangeLocationDialog>
         <div className="flex flex-col">
           <h3 className="text-md font-bold">#Order ID:</h3>
           <p className="text-sm font-semibold">{order?.order_id}</p>
