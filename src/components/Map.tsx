@@ -54,7 +54,13 @@ const Map = () => {
       >
         {orderLocation && (
           <>
-            <Marker position={orderLocation} />
+            <Marker
+              position={orderLocation}
+              icon={{
+                url: "/icons/location.png",
+                scaledSize: new google.maps.Size(40, 40),
+              }}
+            />
 
             <MarkerClusterer>
               {(clusterer) => (
@@ -73,6 +79,10 @@ const Map = () => {
                         }}
                         clusterer={clusterer}
                         onClick={() => handleMarkerClick(store)}
+                        icon={{
+                          url: "/icons/shop.png",
+                          scaledSize: new google.maps.Size(40, 40),
+                        }}
                       />
                     </StoreDetailsDialog>
                   ))}

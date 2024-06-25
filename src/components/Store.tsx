@@ -89,7 +89,7 @@ const Store = () => {
                         "flex items-center gap-2": isLoading,
                       })}
                     >
-                      <span>Directions:</span>{" "}
+                      <span>Store Address:</span>{" "}
                       {isLoading ? (
                         <Skeleton className="h-4 w-28" />
                       ) : (

@@ -12,6 +12,7 @@ import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
+import { Skeleton } from "./ui/skeleton";
 
 interface StoreDetailsDialogProps {
   children: React.ReactNode;
@@ -26,6 +27,8 @@ const StoreDetailsDialog = ({
   direction,
   onGetRoute,
 }: StoreDetailsDialogProps) => {
+  const isLoading = !direction;
+
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
@@ -42,15 +45,33 @@ const StoreDetailsDialog = ({
           <DialogDescription className="space-y-2">
             <div>
               <Label>Delivery Time:</Label>
-              <p>{direction?.routes[0].legs[0].duration?.text || "N/A"}</p>
+              {isLoading ? (
+                <Skeleton className="h-4 w-24 mt-2" />
+              ) : (
+                <p className="mt-2">
+                  {direction.routes[0].legs[0].duration?.text || "N/A"}
+                </p>
+              )}
             </div>
             <div>
-              <Label>Distance: </Label>
-              <p>{direction?.routes[0].legs[0].distance?.text || "N/A"}</p>
+              <Label>Distance:</Label>
+              {isLoading ? (
+                <Skeleton className="h-4 w-24 mt-2" />
+              ) : (
+                <p className="mt-2">
+                  {direction.routes[0].legs[0].distance?.text || "N/A"}
+                </p>
+              )}
             </div>
             <div>
-              <Label>Address</Label>
-              <p>{direction?.routes[0].legs[0].end_address || "N/A"}</p>
+              <Label>Store Address:</Label>
+              {isLoading ? (
+                <Skeleton className="h-4 w-24 mt-2" />
+              ) : (
+                <p className="mt-2">
+                  {direction.routes[0].legs[0].end_address || "N/A"}
+                </p>
+              )}
             </div>
           </DialogDescription>
           <DialogFooter>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { Command, CommandInput, CommandList, CommandItem } from "./ui/command";
 import { z } from "zod";
@@ -23,14 +23,22 @@ const SearchPlaces: React.FC<SearchPlacesProps> = ({ register, setValue }) => {
     inputTouched,
   } = useSearchPlaces(setValue);
 
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <Command className={cn("w-full border rounded")}>
+    <Command
+      className={cn("w-full border rounded-lg", {
+        "border-primary border-2": isFocused,
+      })}
+    >
       <CommandInput
         {...register("address")}
         onValueChange={handleInput}
         disabled={!ready}
         placeholder="Search for a location"
         value={value}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
       <CommandList>
         {status === "OK" && data.length > 0
