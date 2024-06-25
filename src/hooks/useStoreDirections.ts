@@ -80,6 +80,7 @@ const useStoreDirections = () => {
     openStoreId,
     handleToggleCollapse,
     getStoreDirections,
+    fetchAndSetDirections,
   };
 };
 

@@ -12,17 +12,26 @@ import {
   nearbyStoresCircleOptions,
 } from "@/constants";
 import { useMap, useStoreByOrder } from "@/hooks";
-import { RoutesRenderers } from "./";
+import { RoutesRenderers, StoreDetailsDialog } from "./";
 
 const Map = () => {
-  const { orderLocation, options, center, onLoad, selectedDirection } =
-    useMap();
+  const {
+    orderLocation,
+    options,
+    center,
+    onLoad,
+    selectedRoute,
+    activeDirection,
+    handleMarkerClick,
+    handleGetRoute,
+  } = useMap();
+
   const { stores } = useStoreByOrder();
 
-  const directionsRendererProps = selectedDirection
+  const directionsRendererProps = selectedRoute
     ? [
         {
-          directions: selectedDirection,
+          directions: selectedRoute,
           options: {
             suppressMarkers: false,
             polylineOptions: {
@@ -52,14 +61,21 @@ const Map = () => {
               {(clusterer) => (
                 <>
                   {stores.map((store) => (
-                    <Marker
+                    <StoreDetailsDialog
                       key={store.storeId}
-                      position={{
-                        lat: Number(store.coordinates.lat),
-                        lng: Number(store.coordinates.lng),
-                      }}
-                      clusterer={clusterer}
-                    />
+                      store={store}
+                      direction={activeDirection}
+                      onGetRoute={(direction) => handleGetRoute(direction)}
+                    >
+                      <Marker
+                        position={{
+                          lat: Number(store.coordinates.lat),
+                          lng: Number(store.coordinates.lng),
+                        }}
+                        clusterer={clusterer}
+                        onClick={() => handleMarkerClick(store)}
+                      />
+                    </StoreDetailsDialog>
                   ))}
                 </>
               )}

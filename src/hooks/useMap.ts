@@ -1,15 +1,18 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useOrderStore, useStoreByOrder } from "@/hooks";
-
-type LatLngLiteral = google.maps.LatLngLiteral;
-type MapOptions = google.maps.MapOptions;
+import { getDirections } from "@/lib/utils";
 
 const useMap = () => {
   const { order } = useOrderStore();
   const { directions, selectedStoreId } = useStoreByOrder();
-  const [orderLocation, setOrderLocation] =
-    useState<google.maps.LatLngLiteral | null>(null);
-  const [selectedDirection, setSelectedDirection] =
+  const [orderLocation, setOrderLocation] = useState<LatLngLiteral | null>(
+    null
+  );
+  const [selectedRoute, setSelectedRoute] =
+    useState<google.maps.DirectionsResult | null>(null);
+  const [activeDirection, setActiveDirection] =
+    useState<google.maps.DirectionsResult | null>(null);
+  const [routeToSet, setRouteToSet] =
     useState<google.maps.DirectionsResult | null>(null);
   const mapRef = useRef<google.maps.Map | null>(null);
 
@@ -40,27 +43,59 @@ const useMap = () => {
     [center]
   );
 
+  const handleMarkerClick = async (store: Store) => {
+    const origin = {
+      lat: Number(orderLocation?.lat),
+      lng: Number(orderLocation?.lng),
+    };
+    const destination = {
+      lat: store.coordinates.lat,
+      lng: store.coordinates.lng,
+    };
+
+    const result = await getDirections(origin, destination);
+    if (result) {
+      setActiveDirection(result);
+    }
+  };
+
+  const handleGetRoute = (direction: google.maps.DirectionsResult) => {
+    setSelectedRoute(null);
+    setRouteToSet(direction);
+  };
+
   useEffect(() => {
-    setOrderLocation({ lat: order.lat, lng: order.lng });
-  }, [order]);
+    if (routeToSet) {
+      setSelectedRoute(routeToSet);
+    }
+  }, [routeToSet]);
 
   useEffect(() => {
     if (selectedStoreId) {
-      const selectedDirection = directions.find(
+      const storeDirection = directions.find(
         (direction) => direction.storeId === selectedStoreId
       )?.directions;
-      setSelectedDirection(selectedDirection || null);
+
+      setSelectedRoute(null);
+      setRouteToSet(storeDirection || null);
     } else {
-      setSelectedDirection(null);
+      setSelectedRoute(null);
     }
   }, [directions, selectedStoreId]);
+
+  useEffect(() => {
+    setOrderLocation({ lat: order.lat, lng: order.lng });
+  }, [order]);
 
   return {
     orderLocation,
     options,
     center,
     onLoad,
-    selectedDirection,
+    selectedRoute,
+    activeDirection,
+    handleMarkerClick,
+    handleGetRoute,
   };
 };
 
