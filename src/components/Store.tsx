@@ -19,7 +19,7 @@ import { useStoreDirections } from "@/hooks";
 
 const Store = () => {
   const {
-    stores,
+    filteredStores,
     loading,
     openStoreId,
     handleToggleCollapse,
@@ -28,7 +28,7 @@ const Store = () => {
 
   return (
     <ScrollArea className="h-full w-full">
-      {stores.map((store) => {
+      {filteredStores.map((store) => {
         const direction = getStoreDirections(store.storeId);
         const isLoading = loading === store.storeId;
         return (

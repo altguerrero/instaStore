@@ -1,8 +1,8 @@
 import { useOrderStore } from "@/hooks";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
-import { MapPinned } from "lucide-react";
-import { ChangeLocationDialog } from "./";
+import { ListFilter, MapPinned } from "lucide-react";
+import { ChangeLocationDialog, FilterStoresDialog } from "./";
 
 const Header = () => {
   const { order } = useOrderStore();
@@ -12,6 +12,11 @@ const Header = () => {
       <Logo size="2xl" />
 
       <div className="flex items-center gap-4">
+        <FilterStoresDialog>
+          <Button variant="secondary">
+            <ListFilter className="mr-2 h-4 w-4" /> Filters
+          </Button>
+        </FilterStoresDialog>
         <ChangeLocationDialog>
           <Button>
             <MapPinned className="mr-2 h-4 w-4" /> Location

@@ -15,6 +15,7 @@ import { useMap, useStoreByOrder } from "@/hooks";
 import { RoutesRenderers, StoreDetailsDialog } from "./";
 
 const Map = () => {
+  const { filteredStores } = useStoreByOrder();
   const {
     orderLocation,
     options,
@@ -25,8 +26,6 @@ const Map = () => {
     handleMarkerClick,
     handleGetRoute,
   } = useMap();
-
-  const { stores } = useStoreByOrder();
 
   const directionsRendererProps = selectedRoute
     ? [
@@ -60,7 +59,7 @@ const Map = () => {
             <MarkerClusterer>
               {(clusterer) => (
                 <>
-                  {stores.map((store) => (
+                  {filteredStores.map((store) => (
                     <StoreDetailsDialog
                       key={store.storeId}
                       store={store}
