@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { useLoadScript } from "@react-google-maps/api";
 import { useOrderStore } from "./hooks";
+import { Loader } from "./components";
 
 const OrderFormView = lazy(() => import("./views/OrderFormView"));
 const StoresView = lazy(() => import("./views/StoresView"));
@@ -19,11 +20,11 @@ const App = () => {
     libraries: ["places"],
   });
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!isLoaded) return <Loader />;
 
   return (
     <Router>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<OrderFormView />} />
           <Route

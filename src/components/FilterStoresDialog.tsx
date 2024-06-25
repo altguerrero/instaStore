@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { filterSchema } from "@/lib/utils";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -110,9 +111,11 @@ const FilterStoresDialog = ({ children }: FilterStoresDialogProps) => {
             />
 
             <DialogFooter>
-              <Button type="submit" className="flex w-full">
-                Apply Filters
-              </Button>
+              <DialogClose asChild>
+                <Button type="submit" className="flex">
+                  Apply Filters
+                </Button>
+              </DialogClose>
             </DialogFooter>
           </form>
         </Form>
