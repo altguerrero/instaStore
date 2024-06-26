@@ -38,7 +38,9 @@ const StoreDetailsDialog = ({
           <DialogTitle className="flex gap-2">
             <span>{store.storeName}</span>
             <Badge
-              className={cn("bg-gray-400", { "bg-green-500": store.isOpen })}
+              className={cn("bg-gray-400 hover:bg-gray-400", {
+                "bg-green-500 hover:bg-green-500": store.isOpen,
+              })}
             >
               {store.isOpen ? "Open" : "Closed"}
             </Badge>
