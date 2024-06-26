@@ -42,7 +42,7 @@ const StoreDetailsDialog = ({
               {store.isOpen ? "Open" : "Closed"}
             </Badge>
           </DialogTitle>
-          <DialogDescription className="space-y-2">
+          <DialogDescription className="text-left space-y-4 pt-4">
             <div>
               <Label>Delivery Time:</Label>
               {isLoading ? (
@@ -76,7 +76,10 @@ const StoreDetailsDialog = ({
           </DialogDescription>
           <DialogFooter>
             <DialogClose asChild>
-              <Button onClick={() => direction && onGetRoute(direction)}>
+              <Button
+                className="mt-8"
+                onClick={() => direction && onGetRoute(direction)}
+              >
                 Get Route
               </Button>
             </DialogClose>

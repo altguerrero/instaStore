@@ -45,14 +45,14 @@ const ChangeLocationDialog = ({ children }: ChangeLocationDialogProps) => {
         </DialogHeader>
         <form
           onSubmit={form.handleSubmit(onChangeOrderSubmit)}
-          className="space-y-4"
+          className="space-y-4 mt-4"
         >
           <div>
             <SearchPlaces register={form.register} setValue={form.setValue} />
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button type="submit">Save Location</Button>
+              <Button className="mt-4" type="submit">Save Location</Button>
             </DialogClose>
           </DialogFooter>
         </form>
