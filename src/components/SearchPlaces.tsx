@@ -5,7 +5,7 @@ import { z } from "zod";
 import { cn, orderSchema } from "@/lib/utils";
 import { useSearchPlaces } from "@/hooks";
 
-const formSchema = orderSchema();
+const formSchema = orderSchema;
 
 interface SearchPlacesProps {
   register: UseFormRegister<z.infer<typeof formSchema>>;

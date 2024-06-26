@@ -16,7 +16,7 @@ import {
 import { Button } from "./ui/button";
 import SearchPlaces from "./SearchPlaces";
 
-const formSchema = orderSchema();
+const formSchema = orderSchema;
 
 interface ChangeLocationDialogProps {
   children: React.ReactNode;
@@ -52,7 +52,9 @@ const ChangeLocationDialog = ({ children }: ChangeLocationDialogProps) => {
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button className="mt-4" type="submit">Save Location</Button>
+              <Button className="mt-4" type="submit">
+                Save Location
+              </Button>
             </DialogClose>
           </DialogFooter>
         </form>

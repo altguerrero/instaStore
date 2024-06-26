@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useOrderStore, useStoreByOrder } from "@/hooks";
 import { getDirections } from "@/lib/utils";
+import { Store } from "@/types";
 
 const useStoreDirections = () => {
   const { order } = useOrderStore();

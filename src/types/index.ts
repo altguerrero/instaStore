@@ -1,16 +1,19 @@
-const storeSchema = orderSchema();
+import { filterSchema, orderSchema } from "@/lib/utils";
+import { z } from "zod";
 
-declare type LatLngLiteral = google.maps.LatLngLiteral;
-declare type MapOptions = google.maps.MapOptions;
-declare type Coordinates = LatLngLiteral;
-declare type DirectionsRendererItemsRef = React.MutableRefObject<
+const storeSchema = orderSchema;
+
+export type LatLngLiteral = google.maps.LatLngLiteral;
+export type MapOptions = google.maps.MapOptions;
+export type Coordinates = LatLngLiteral;
+export type DirectionsRendererItemsRef = React.MutableRefObject<
   {
     renderer: google.maps.DirectionsRenderer;
     id: string;
   }[]
 >;
 
-declare interface Store {
+export interface Store {
   storeId: string;
   storeName: string;
   isOpen: boolean;
@@ -19,17 +22,17 @@ declare interface Store {
 
 type OrderFormData = z.infer<typeof storeSchema>;
 
-declare interface OrderState {
+export interface OrderState {
   order: OrderFormData;
   setOrder: (order: OrderFormData) => void;
 }
 
-declare interface Directions {
+export interface Directions {
   storeId: string;
   directions: google.maps.DirectionsResult | null;
 }
 
-declare interface StoreByOrder {
+export interface StoreByOrder {
   stores: Store[];
   filteredStores: Store[];
   filters: z.infer<typeof filterSchema>;

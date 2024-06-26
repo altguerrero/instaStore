@@ -4,6 +4,7 @@ import {
   DirectionsRendererProps,
 } from "@react-google-maps/api";
 import { v4 as uuid } from "uuid";
+import { DirectionsRendererItemsRef } from "@/types";
 
 const DirectionsRendererComponent = ({
   rendererProp,

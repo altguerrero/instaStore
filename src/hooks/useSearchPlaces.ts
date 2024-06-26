@@ -7,7 +7,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import { orderSchema } from "@/lib/utils";
 
-const formSchema = orderSchema();
+const formSchema = orderSchema;
 
 const useSearchPlaces = (
   setValue: UseFormSetValue<z.infer<typeof formSchema>>

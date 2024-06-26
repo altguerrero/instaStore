@@ -1,3 +1,4 @@
+import { OrderState } from "@/types";
 import { create } from "zustand";
 
 const useOrderStore = create<OrderState>((set) => ({

@@ -1,7 +1,8 @@
-import { useOrderStore } from "@/hooks";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { z } from "zod";
+import { useOrderStore } from "@/hooks";
+import { Coordinates, LatLngLiteral, Store } from "@/types";
 
 /**
  * Combina clases de forma condicional usando `clsx` y `tailwind-merge`.
@@ -16,19 +17,18 @@ export function cn(...inputs: ClassValue[]) {
  * Esquema de validación para la orden.
  * @returns {z.ZodObject} - El esquema de validación para la orden.
  */
-export const orderSchema = () =>
-  z.object({
-    order_id: z
-      .string()
-      .min(5, { message: "Order ID must be at least 5 characters long." })
-      .max(10, { message: "Order ID must be at most 10 characters long." }),
-    address: z
-      .string()
-      .min(5, { message: "Address must be at least 5 characters long." })
-      .max(1000, { message: "Address must be at most 100 characters long." }),
-    lat: z.number(),
-    lng: z.number(),
-  });
+export const orderSchema = z.object({
+  order_id: z
+    .string()
+    .min(5, { message: "Order ID must be at least 5 characters long." })
+    .max(10, { message: "Order ID must be at most 10 characters long." }),
+  address: z
+    .string()
+    .min(5, { message: "Address must be at least 5 characters long." })
+    .max(1000, { message: "Address must be at most 100 characters long." }),
+  lat: z.number(),
+  lng: z.number(),
+});
 
 /**
  * Esquema de validación para los filtros.
@@ -158,7 +158,7 @@ const calculateDistance = (
   lng1: number,
   lat2: number,
   lng2: number
-) => {
+): number => {
   const toRad = (x: number) => (x * Math.PI) / 180;
 
   const Earthradius = 6371;
@@ -188,13 +188,13 @@ export const applyFilters = (
   stores: Store[],
   filters: z.infer<typeof filterSchema>,
   orderLocation: LatLngLiteral
-) => {
+): Store[] => {
   return stores.filter((store) => {
     if (filters.isOpen !== undefined && store.isOpen !== filters.isOpen) {
       return false;
     }
     if (filters.distance) {
-      const distanceInKm = parseInt(filters.distance);
+      const distanceInKm = parseInt(filters.distance.replace("km", ""));
       const storeDistance = calculateDistance(
         orderLocation.lat,
         orderLocation.lng,

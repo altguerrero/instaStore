@@ -6,6 +6,7 @@ import {
   generateRandomStores,
   getOrderLocation,
 } from "@/lib/utils";
+import { StoreByOrder } from "@/types";
 
 const useStoreByOrder = create<StoreByOrder>((set, get) => ({
   stores: [],
