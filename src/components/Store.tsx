@@ -37,8 +37,8 @@ const Store = () => {
               <CardTitle>{store.storeName}</CardTitle>
               <CardDescription>
                 <Badge
-                  className={cn("bg-gray-400", {
-                    "bg-green-500": !!store.isOpen,
+                  className={cn("bg-gray-400 hover:bg-gray-400", {
+                    "bg-green-500 hover:bg-green-500": !!store.isOpen,
                   })}
                 >
                   {store.isOpen ? "Open" : "Closed"}
