@@ -16,7 +16,7 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { SearchPlaces } from "./";
 
-const formSchema = orderSchema();
+const formSchema = orderSchema;
 
 const OrderForm = () => {
   const { order, setOrder } = useOrderStore();

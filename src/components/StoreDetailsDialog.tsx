@@ -13,6 +13,7 @@ import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
 import { Skeleton } from "./ui/skeleton";
+import { Store } from "@/types";
 
 interface StoreDetailsDialogProps {
   children: React.ReactNode;

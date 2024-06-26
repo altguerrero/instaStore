@@ -1,6 +1,7 @@
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
 import { useOrderStore, useStoreByOrder } from "@/hooks";
 import { getDirections } from "@/lib/utils";
+import { LatLngLiteral, MapOptions, Store } from "@/types";
 
 const useMap = () => {
   const { order } = useOrderStore();
