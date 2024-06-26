@@ -8,6 +8,7 @@ import {
 import { useLoadScript } from "@react-google-maps/api";
 import { useOrderStore } from "./hooks";
 import { Loader } from "./components";
+import { NotFound } from "./views";
 
 const OrderFormView = lazy(() => import("./views/OrderFormView"));
 const StoresView = lazy(() => import("./views/StoresView"));
@@ -37,6 +38,7 @@ const App = () => {
               )
             }
           />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
     </Router>
