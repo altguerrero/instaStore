@@ -190,8 +190,10 @@ export const applyFilters = (
   orderLocation: LatLngLiteral
 ): Store[] => {
   return stores.filter((store) => {
-    if (filters.isOpen !== undefined && store.isOpen !== filters.isOpen) {
-      return false;
+    if (filters.isOpen !== undefined) {
+      if (filters.isOpen && !store.isOpen) {
+        return false;
+      }
     }
     if (filters.distance) {
       const distanceInKm = parseInt(filters.distance.replace("km", ""));
@@ -205,6 +207,7 @@ export const applyFilters = (
         return false;
       }
     }
+
     return true;
   });
 };
