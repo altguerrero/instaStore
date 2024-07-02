@@ -17,7 +17,7 @@ import { ChevronUp } from "lucide-react";
 import { Skeleton } from "./ui/skeleton";
 import { useStoreDirections } from "@/hooks";
 
-const Store = () => {
+const StoreList = () => {
   const {
     filteredStores,
     loading,
@@ -107,4 +107,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default StoreList;

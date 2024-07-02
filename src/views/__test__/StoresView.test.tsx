@@ -4,7 +4,7 @@ import { StoresView } from "@/views";
 
 jest.mock("@/components", () => ({
   Header: jest.fn(() => <div data-testid="header"></div>),
-  Store: jest.fn(() => <div data-testid="store"></div>),
+  StoreList: jest.fn(() => <div data-testid="store"></div>),
 }));
 
 jest.mock("@/components/Map", () =>
