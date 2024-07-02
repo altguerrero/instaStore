@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { Store } from "@/components";
+import { StoreList } from "@/components";
 import { useStoreDirections } from "@/hooks";
 
 jest.mock("@/hooks", () => ({
@@ -55,7 +55,7 @@ describe("Store Component", () => {
   });
 
   it("renders store names and statuses", () => {
-    render(<Store />);
+    render(<StoreList />);
     expect(screen.getByText("Mock Store 1")).toBeInTheDocument();
     expect(screen.getByText("Open")).toBeInTheDocument();
     expect(screen.getByText("Mock Store 2")).toBeInTheDocument();
@@ -63,7 +63,7 @@ describe("Store Component", () => {
   });
 
   it("toggles the collapsible content when the store details are clicked", () => {
-    render(<Store />);
+    render(<StoreList />);
     fireEvent.click(screen.getAllByText("Store details")[0]);
     expect(mockHandleToggleCollapse).toHaveBeenCalledWith(
       mockFilteredStores[0]
@@ -80,7 +80,7 @@ describe("Store Component", () => {
       fetchAndSetDirections: () => Promise.resolve(),
     });
 
-    render(<Store />);
+    render(<StoreList />);
 
     expect(screen.getByText("Delivery Time:")).toBeInTheDocument();
     expect(screen.getByText("10 mins")).toBeInTheDocument();
