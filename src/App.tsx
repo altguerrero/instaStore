@@ -1,10 +1,47 @@
-import { Button } from "@/components/ui/button";
+import { Suspense, lazy } from "react";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { useLoadScript } from "@react-google-maps/api";
+import { useOrderStore } from "./hooks";
+import { Loader } from "./components";
+import { NotFound } from "./views";
+
+const OrderFormView = lazy(() => import("./views/OrderFormView"));
+const StoresView = lazy(() => import("./views/StoresView"));
 
 const App = () => {
+  const { order } = useOrderStore();
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey:
+      (import.meta.env.VITE_GOOGLE_MAPS_API_KEY as string) || "",
+    libraries: ["places"],
+  });
+
+  if (!isLoaded) return <Loader />;
+
   return (
-    <div className="flex flex-col flex-1 h-screen justify-center items-center">
-      <Button>Click me</Button>
-    </div>
+    <Router>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<OrderFormView />} />
+          <Route
+            path="/stores"
+            element={
+              !!order.address && !!order.order_id ? (
+                <StoresView />
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </Router>
   );
 };
 

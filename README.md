@@ -3,7 +3,6 @@
 ## Tabla de Contenido
 
 - [Descripción](#descripción)
-- [Preguntas y Respuestas](#preguntas-y-respuestas)
 - [Arquitectura de la Aplicación](#arquitectura-de-la-aplicación)
   - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Bocetos](#bocetos)
@@ -17,7 +16,6 @@
   - [Compilar para Producción](#compilar-para-producción)
   - [Notas Adicionales](#notas-adicionales)
 - [Mejoras y Compromisos](#mejoras-y-compromisos)
-- [Bloqueos Encontrados](#bloqueos-encontrados)
 - [Video de Demostración](#video-de-demostración)
 
 ## Descripción
@@ -33,11 +31,6 @@ InstaStore es una aplicación web diseñada para ayudar a nuestros clientes B2B 
 
 La aplicación está desarrollada con React para asegurar una experiencia de usuario fluida y rápida, y utiliza tecnologías modernas para proporcionar una interfaz intuitiva y fácil de usar.
 
-## Preguntas y Respuestas
-Documentación de preguntas realizadas y sus respuestas.
-
-**Por definir.**
-
 ## Arquitectura de la Aplicación
 
 ### Estructura del Proyecto
@@ -51,12 +44,16 @@ instaStore/
 │   ├── assets/
 │   │   ├── images/
 │   │   └── styles/
-│   ├── utils/
-│   │   ├── lib/
-│   │   ├── hooks/
+│   ├── lib/
 │   │   └── ...
 │   ├── components/
 │   │   ├── ui/
+│   │   └── ...
+│   ├── constants/
+│   │   └── ...
+│   ├── hooks/
+│   │   └── ...
+│   ├── types/
 │   │   └── ...
 │   ├── views/
 │   │   └── ...
@@ -77,10 +74,10 @@ instaStore/
 3. **Redirección a StoresView**: Después de enviar el formulario, la aplicación redirige a `StoresView`.
 4. **Visualización de Tiendas**: En `StoresView`, el usuario puede ver una lista de tiendas cercanas y un mapa con las ubicaciones de las tiendas.
 
-
 ### Flujo de Datos
 
 1. **OrderFormView**:
+
    - El formulario de pedido captura el ID del pedido y la ubicación.
    - La función `onOrderSubmit` maneja el envío del pedido y redirige a `StoresView`.
 
@@ -90,7 +87,6 @@ instaStore/
    - Muestra una lista de tiendas y un mapa con las ubicaciones.
 
 Esta arquitectura modular permite mantener el código organizado y facilita el mantenimiento y la extensión de la aplicación.
-
 
 ## Bocetos
 
@@ -197,10 +193,26 @@ Esto generará los archivos compilados en la carpeta `dist`.
 - Asegúrate de configurar las variables de entorno necesarias en un archivo .env en la raíz del proyecto.
 
 ## Mejoras y Compromisos
-**Por definir.**
 
-## Bloqueos Encontrados
-**Por definir.**
+1. ¿Qué mejorarías de tu código? ¿por qué?
+
+   - Mejoraría la gestión de errores implementando un manejador global de errores y reportándolos a herramientas como Sentry. Esto permitiría detectar y resolver problemas más rápidamente en producción. También modularizaría mejor el código y optimizaría el rendimiento mediante el uso de React.memo, useMemo, lazy loading y code splitting para reducir el tiempo de carga y mejorar la eficiencia. Además, ampliaría y detallaría las pruebas existentes para asegurar una mayor cobertura y confiabilidad.
+
+2. ¿Qué compromisos harías para cumplir con el tiempo? ¿Qué harías la próxima vez para entregar más y sacrificar menos?
+
+   - Para cumplir con el tiempo, priorizaría las funcionalidades críticas y las pruebas más esenciales, dejando las optimizaciones y mejoras adicionales para después de la entrega inicial. La próxima vez, implementaría una planificación más detallada desde el inicio, descomponiendo las tareas en partes más pequeñas y manejables, y estableciendo hitos intermedios para asegurar un progreso constante y detectable.
+
+3. ¿Crees que tu aplicación es segura? ¿por qué?
+
+   - Aunque nuestra aplicación no maneja autenticación y autorización, nos aseguramos de validar y sanitizar los datos de entrada para prevenir inyecciones y otros ataques comunes. También seguimos las mejores prácticas de desarrollo seguro, como el uso de HTTPS y la protección contra ataques CSRF y XSS.
+
+4. ¿Qué harías para medir el comportamiento de tu producto en un entorno de producción?
+   - Implementaría herramientas de monitoreo y análisis como Google Analytics, Sentry y New Relic para rastrear el rendimiento, errores y el comportamiento del usuario. También configuraría alertas para detectar problemas críticos rápidamente y establecería un dashboard en tiempo real para supervisar métricas clave como el tiempo de respuesta, la tasa de errores y el uso de recursos.
+
+### Conclusión
+
+Aunque ya realizamos testing, sería beneficioso ampliar estas pruebas y brindarles más detalles. Además, añadir un manejador de errores global y reportar estos errores a herramientas como Sentry aumentará la robustez, mantenibilidad y experiencia del usuario en la aplicación.
 
 ## Video de Demostración
-**Por definir.**
+
+[Ver Video en Loom](https://www.loom.com/share/0c8f8d99366b45c49aafe19bbe3345af?sid=8695604b-b488-4dd0-bbea-2467b3d9d629)
